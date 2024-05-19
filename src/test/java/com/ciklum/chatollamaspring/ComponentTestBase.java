@@ -7,6 +7,9 @@ import org.testcontainers.chromadb.ChromaDBContainer;
 
 import java.time.Duration;
 
+/**
+ * @author Fernando Moreno Ruiz
+ * */
 @SpringBootTest
 public class ComponentTestBase {
 

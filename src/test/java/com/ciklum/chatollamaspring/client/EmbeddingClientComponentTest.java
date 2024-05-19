@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
+/**
+ * @author Fernando Moreno Ruiz
+ * */
 class EmbeddingClientComponentTest extends ComponentTestBase {
 
   @Autowired

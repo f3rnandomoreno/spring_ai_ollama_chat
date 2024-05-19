@@ -3,6 +3,8 @@ package com.ciklum.chatollamaspring.configuration;
 
 import org.springframework.ai.document.DefaultContentFormatter;
 import org.springframework.ai.ollama.OllamaChatClient;
+import org.springframework.ai.ollama.api.OllamaApi;
+import org.springframework.ai.ollama.api.OllamaOptions;
 import org.springframework.ai.reader.pdf.PagePdfDocumentReader;
 import org.springframework.ai.transformer.ContentFormatTransformer;
 import org.springframework.ai.transformer.KeywordMetadataEnricher;
@@ -11,6 +13,10 @@ import org.springframework.ai.transformer.splitter.TokenTextSplitter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * @author Fernando Moreno Ruiz
+ * Configuration for RAG
+ * */
 @Configuration
 public class RAGConfiguration {
 

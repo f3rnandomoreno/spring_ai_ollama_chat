@@ -11,6 +11,9 @@ import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import reactor.test.StepVerifier;
 
+/**
+ * @author Fernando Moreno Ruiz
+ * */
 // TODO pending evaluation of every test because BasicEvaluationTest of spring ai is TBD yet.
 class RAGServiceComponentTest extends ComponentTestBase {
 
