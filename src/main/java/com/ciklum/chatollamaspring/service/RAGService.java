@@ -19,14 +19,14 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
 /**
- * @author Fernando Moreno Ruiz
- * Implement ETL (Extract, Transform and Load) structure to do a RAG */
+ * @author Fernando Moreno Ruiz Implement ETL (Extract, Transform and Load) structure to do a RAG
+ */
 @Service
 @AllArgsConstructor
 @Log4j2
 public class RAGService {
 
-  private static String PROMPT_TEMPLATE =
+  private final static String PROMPT_TEMPLATE =
       "You are assistant. "
           + "You answer shortly the question:\\n\"\"\"<question>{question}</question>\"\"\"\n about this information:\\n\"\"\"<information>{document}</information>\"\"\"";
 
@@ -35,7 +35,7 @@ public class RAGService {
   // Transformer
   final TextSplitter textSplitter;
   final ContentFormatTransformer contentFormatTransformer;
-//  final KeywordMetadataEnricher keywordMetadataEnricher; it takes time to do it
+  //  final KeywordMetadataEnricher keywordMetadataEnricher; it takes time to do it
   // Load
   final VectorStore vectorStore;
 
@@ -50,12 +50,13 @@ public class RAGService {
     return streamingChatClient.stream(getPromptWithContext(question).getContents());
   }
 
-  /** Load a PDF file from the filepath and take the text from it */
+  /**
+   * Load a PDF file from the filepath and take the text from it and split all text by tokens. Then
+   * it is saved in the vector database
+   */
   @PostConstruct
   public void loadPDF() {
-    vectorStore.accept(
-        contentFormatTransformer.apply(
-            textSplitter.apply(documentReader.get())));
+    vectorStore.accept(contentFormatTransformer.apply(textSplitter.apply(documentReader.get())));
   }
 
   public String ask(String question, boolean withContext) {
