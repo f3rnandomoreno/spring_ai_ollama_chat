@@ -11,6 +11,7 @@ import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import reactor.test.StepVerifier;
 
+// TODO pending evaluation of every test because BasicEvaluationTest of spring ai is TBD yet.
 class RAGServiceComponentTest extends ComponentTestBase {
 
   private static final Logger log = LoggerFactory.getLogger(RAGServiceComponentTest.class);

@@ -3,7 +3,6 @@ package com.ciklum.chatollamaspring.service;
 import jakarta.annotation.PostConstruct;
 import java.util.List;
 import java.util.Map;
-
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.ai.chat.ChatClient;
@@ -13,7 +12,6 @@ import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.document.DocumentReader;
 import org.springframework.ai.transformer.ContentFormatTransformer;
-import org.springframework.ai.transformer.KeywordMetadataEnricher;
 import org.springframework.ai.transformer.splitter.TextSplitter;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.stereotype.Service;
@@ -60,6 +58,7 @@ public class RAGService {
     return chatClient.call(questionWithContext.getContents());
   }
 
+  // it just takes one document to get the context because this computer is so slow with ollama
   private Prompt getPromptWithContext(String question) {
     log.traceEntry("Ask question {}", question);
     PromptTemplate promptTemplate =
