@@ -13,7 +13,7 @@ Start the required services with Docker Compose (ChromaDB):
   docker-compose up -d
   ```
 
-## Endpoints
+## Endpoint
 
 ### `POST /chat/ask`
 
