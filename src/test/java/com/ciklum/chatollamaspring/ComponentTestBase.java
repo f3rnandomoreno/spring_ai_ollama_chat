@@ -23,7 +23,6 @@ public class ComponentTestBase {
   // start the container
   static {
     chromadb.start();
-
   }
 
   @DynamicPropertySource
