@@ -1,4 +1,6 @@
-This project is a RAG example with Ollama and Spring AI. It uses ETL (Extract, Transform and Load) to load a PDF with spring ai in a VectorStore (ChromaDB).
+# Spring AI Ollama Chat
+
+This project is an example of a Retrieval-Augmented Generation (RAG) application using Ollama and Spring AI. It employs ETL (Extract, Transform, Load) processes to load a PDF into a VectorStore (ChromaDB) with Spring AI, allowing for question-and-answer interactions based on the content of the PDF.
 
 ## Prerequisites
 
