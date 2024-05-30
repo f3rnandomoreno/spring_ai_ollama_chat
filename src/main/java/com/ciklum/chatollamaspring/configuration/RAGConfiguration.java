@@ -35,8 +35,8 @@ public class RAGConfiguration {
   }
 
   @Bean("keywordMetadataEnricher")
-  public KeywordMetadataEnricher keywordMetadataEnricher(OllamaChatModel ollamaChatClient) {
-    return new KeywordMetadataEnricher(ollamaChatClient,5);
+  public KeywordMetadataEnricher keywordMetadataEnricher(OllamaChatModel ollamaChatModel) {
+    return new KeywordMetadataEnricher(ollamaChatModel,5);
   }
 
 }

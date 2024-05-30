@@ -40,14 +40,14 @@ public class RAGService {
   final VectorStore vectorStore;
 
   // Chat
-  final ChatModel chatClient;
-  final StreamingChatModel streamingChatClient;
+  final ChatModel chatModel;
+  final StreamingChatModel streamingChatModel;
 
   public Flux<String> askStream(String question, boolean withContext) {
     if (!withContext) {
-      return streamingChatClient.stream(question);
+      return streamingChatModel.stream(question);
     }
-    return streamingChatClient.stream(getPromptWithContext(question).getContents());
+    return streamingChatModel.stream(getPromptWithContext(question).getContents());
   }
 
   /**
@@ -61,10 +61,10 @@ public class RAGService {
 
   public String ask(String question, boolean withContext) {
     if (!withContext) {
-      return chatClient.call(question);
+      return chatModel.call(question);
     }
     var questionWithContext = getPromptWithContext(question);
-    return chatClient.call(questionWithContext.getContents());
+    return chatModel.call(questionWithContext.getContents());
   }
 
   // it just takes one document to get the context because this computer is so slow with ollama

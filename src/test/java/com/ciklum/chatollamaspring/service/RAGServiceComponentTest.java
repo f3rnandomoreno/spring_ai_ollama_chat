@@ -21,7 +21,7 @@ class RAGServiceComponentTest extends ComponentTestBase {
   @Autowired VectorStore vectorStore;
 
   @Autowired RAGService ragService;
-  @Autowired ChatModel chatClient;
+  @Autowired ChatModel chatModel;
 
   @Test
   void testAskStreamingWithContext() {
@@ -78,4 +78,6 @@ class RAGServiceComponentTest extends ComponentTestBase {
     var responseWithContact = ragService.ask(question, true);
     log.info("Response WITH context: " + responseWithContact);
   }
+
+
 }
