@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.ai.chat.ChatClient;
-import org.springframework.ai.chat.StreamingChatClient;
+import org.springframework.ai.chat.model.ChatModel;
+import org.springframework.ai.chat.model.StreamingChatModel;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.chat.prompt.SystemPromptTemplate;
@@ -40,8 +40,8 @@ public class RAGService {
   final VectorStore vectorStore;
 
   // Chat
-  final ChatClient chatClient;
-  final StreamingChatClient streamingChatClient;
+  final ChatModel chatClient;
+  final StreamingChatModel streamingChatClient;
 
   public Flux<String> askStream(String question, boolean withContext) {
     if (!withContext) {
@@ -72,8 +72,8 @@ public class RAGService {
     log.traceEntry("Ask question {}", question);
     PromptTemplate promptTemplate = new SystemPromptTemplate(PROMPT_TEMPLATE);
     List<Document> relatedDocuments = vectorStore.similaritySearch(question);
-    log.info("Nearest distance {}", relatedDocuments.get(0).getMetadata().get("distance"));
-    log.info("Nearest document {}", relatedDocuments.get(0).getContent().substring(20));
+    log.info("Nearest distance {}", relatedDocuments.getFirst().getMetadata().get("distance"));
+    log.info("Nearest document {}", relatedDocuments.getFirst().getContent().substring(20));
     return promptTemplate.create(
         Map.of(
             "question",

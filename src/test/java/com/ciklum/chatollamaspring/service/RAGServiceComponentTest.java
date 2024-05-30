@@ -6,14 +6,14 @@ import com.ciklum.chatollamaspring.ComponentTestBase;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.ai.chat.ChatClient;
+import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import reactor.test.StepVerifier;
 
 /**
  * @author Fernando Moreno Ruiz
- * */
+ */
 // TODO pending evaluation of every test because BasicEvaluationTest of spring ai is TBD yet.
 class RAGServiceComponentTest extends ComponentTestBase {
 
@@ -21,13 +21,13 @@ class RAGServiceComponentTest extends ComponentTestBase {
   @Autowired VectorStore vectorStore;
 
   @Autowired RAGService ragService;
-  @Autowired ChatClient chatClient;
+  @Autowired ChatModel chatClient;
 
   @Test
   void testAskStreamingWithContext() {
     String question = "What Andrew says about MATLAB?";
     log.info(question);
-    var responseFlux = ragService.askStream(question,true);
+    var responseFlux = ragService.askStream(question, true);
     StepVerifier.create(responseFlux)
         .thenConsumeWhile(
             response -> {
@@ -41,7 +41,7 @@ class RAGServiceComponentTest extends ComponentTestBase {
   void testAskStreamingWithoutContext() {
     String question = "What Andrew says about MATLAB?";
     log.info(question);
-    var responseFlux = ragService.askStream(question,false);
+    var responseFlux = ragService.askStream(question, false);
     StepVerifier.create(responseFlux)
         .thenConsumeWhile(
             response -> {
@@ -50,11 +50,12 @@ class RAGServiceComponentTest extends ComponentTestBase {
             })
         .verifyComplete();
   }
+
   @Test
   void testAskWithoutContext() {
     String question = "What Andrew says about MATLAB?";
     log.info(question);
-    var response = ragService.ask(question,false);
+    var response = ragService.ask(question, false);
     log.info("Response: " + response);
     assertNotNull(response);
   }
@@ -63,7 +64,7 @@ class RAGServiceComponentTest extends ComponentTestBase {
   void testAskWithContext() {
     String question = "What Andrew says about MATLAB?";
     log.info(question);
-    var response = ragService.ask(question,true);
+    var response = ragService.ask(question, true);
     log.info("Response: " + response);
     assertNotNull(response);
   }
@@ -72,9 +73,9 @@ class RAGServiceComponentTest extends ComponentTestBase {
   void testCompareAskWithoutContext() {
     String question = "What Andrew says about MATLAB?";
     log.info(question);
-    var responseWithoutContext = ragService.ask(question,false);
+    var responseWithoutContext = ragService.ask(question, false);
     log.info("Response WITHOUT context: " + responseWithoutContext);
-    var responseWithContact = ragService.ask(question,true);
+    var responseWithContact = ragService.ask(question, true);
     log.info("Response WITH context: " + responseWithContact);
   }
 }

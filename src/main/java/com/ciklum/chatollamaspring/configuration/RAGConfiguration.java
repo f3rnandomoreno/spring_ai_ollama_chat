@@ -2,9 +2,7 @@ package com.ciklum.chatollamaspring.configuration;
 
 
 import org.springframework.ai.document.DefaultContentFormatter;
-import org.springframework.ai.ollama.OllamaChatClient;
-import org.springframework.ai.ollama.api.OllamaApi;
-import org.springframework.ai.ollama.api.OllamaOptions;
+import org.springframework.ai.ollama.OllamaChatModel;
 import org.springframework.ai.reader.pdf.PagePdfDocumentReader;
 import org.springframework.ai.transformer.ContentFormatTransformer;
 import org.springframework.ai.transformer.KeywordMetadataEnricher;
@@ -37,7 +35,7 @@ public class RAGConfiguration {
   }
 
   @Bean("keywordMetadataEnricher")
-  public KeywordMetadataEnricher keywordMetadataEnricher(OllamaChatClient ollamaChatClient) {
+  public KeywordMetadataEnricher keywordMetadataEnricher(OllamaChatModel ollamaChatClient) {
     return new KeywordMetadataEnricher(ollamaChatClient,5);
   }
 
